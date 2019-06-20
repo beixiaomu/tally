@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  * 
  */
 @SuppressWarnings("unused")
-public class AbcTest {
+public class AbcTest {  
 	private final static String FUWU1 = "10.0";
 	private final static String YIJI1 = "10.0";
 	private final static String ERJI1 = "6.0";
