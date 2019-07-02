@@ -74,6 +74,7 @@
 			<!-- 3.这是第三种；不拦截静态资源的方法 -->
 			<!-- .do -->
 			<mvc:exclude-mapping path="/index/*" />
+			<mvc:exclude-mapping path="/produce/*" />
 			<bean class="com.bei.tally.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

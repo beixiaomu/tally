@@ -6,7 +6,7 @@
  * @date 2019年5月10日 上午9:55:51 
  * @version V1.0 
  */ 
-package com.bei.tally.util.g;
+package com.bei.tally.util.generator;
 
 import org.mybatis.generator.api.CommentGenerator;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;

@@ -1,8 +1,8 @@
 package com.bei.tally.dao;
 
-import com.bei.tally.entity.FileUpload;
+import com.bei.tally.entity.Source;
 
-public interface FileUploadMapper {
+public interface SourceMapper {
     /**
      *
      * @mbggenerated 2019-06-28
@@ -13,29 +13,29 @@ public interface FileUploadMapper {
      *
      * @mbggenerated 2019-06-28
      */
-    int insert(FileUpload record);
+    int insert(Source record);
 
     /**
      *
      * @mbggenerated 2019-06-28
      */
-    int insertSelective(FileUpload record);
+    int insertSelective(Source record);
 
     /**
      *
      * @mbggenerated 2019-06-28
      */
-    FileUpload selectByPrimaryKey(Integer id);
+    Source selectByPrimaryKey(Integer id);
 
     /**
      *
      * @mbggenerated 2019-06-28
      */
-    int updateByPrimaryKeySelective(FileUpload record);
+    int updateByPrimaryKeySelective(Source record);
 
     /**
      *
      * @mbggenerated 2019-06-28
      */
-    int updateByPrimaryKey(FileUpload record);
+    int updateByPrimaryKey(Source record);
 }

@@ -1,4 +1,4 @@
-package com.bei.tally.util.g;
+package com.bei.tally.util.generator;
 
 import java.util.Properties;
 

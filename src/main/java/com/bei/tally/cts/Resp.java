@@ -2,9 +2,7 @@ package com.bei.tally.cts;
 
 import java.io.Serializable;
 
-import org.apache.poi.ss.formula.functions.T;
-
-public class Resp implements Serializable {
+public class Resp<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int code;		//状态码

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *  
  */
 @Controller
-@RequestMapping(value="index")
+@RequestMapping(value="indexTeacher")
 public class TeacherController {
 	@RequestMapping(value = "loginUI", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")

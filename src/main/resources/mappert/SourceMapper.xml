@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bei.tally.dao.SourceMapper" >
+  <resultMap id="BaseResultMap" type="com.bei.tally.entity.Source" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_name" property="sourceName" jdbcType="VARCHAR" />
+    <result column="source_phone" property="sourcePhone" jdbcType="VARCHAR" />
+    <result column="source_address" property="sourceAddress" jdbcType="VARCHAR" />
+    <result column="source_num" property="sourceNum" jdbcType="INTEGER" />
+    <result column="source_money" property="sourceMoney" jdbcType="DECIMAL" />
+    <result column="source_price" property="sourcePrice" jdbcType="DECIMAL" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, source_name, source_phone, source_address, source_num, source_money, source_price, 
+    del_flag, remark, create_by, create_date, update_by, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_source
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_source
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bei.tally.entity.Source" >
+    insert into t_source (id, source_name, source_phone, 
+      source_address, source_num, source_money, 
+      source_price, del_flag, remark, 
+      create_by, create_date, update_by, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{sourceName,jdbcType=VARCHAR}, #{sourcePhone,jdbcType=VARCHAR}, 
+      #{sourceAddress,jdbcType=VARCHAR}, #{sourceNum,jdbcType=INTEGER}, #{sourceMoney,jdbcType=DECIMAL}, 
+      #{sourcePrice,jdbcType=DECIMAL}, #{delFlag,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bei.tally.entity.Source" >
+    insert into t_source
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sourceName != null" >
+        source_name,
+      </if>
+      <if test="sourcePhone != null" >
+        source_phone,
+      </if>
+      <if test="sourceAddress != null" >
+        source_address,
+      </if>
+      <if test="sourceNum != null" >
+        source_num,
+      </if>
+      <if test="sourceMoney != null" >
+        source_money,
+      </if>
+      <if test="sourcePrice != null" >
+        source_price,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sourceName != null" >
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcePhone != null" >
+        #{sourcePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAddress != null" >
+        #{sourceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceNum != null" >
+        #{sourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="sourceMoney != null" >
+        #{sourceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sourcePrice != null" >
+        #{sourcePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bei.tally.entity.Source" >
+    update t_source
+    <set >
+      <if test="sourceName != null" >
+        source_name = #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcePhone != null" >
+        source_phone = #{sourcePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAddress != null" >
+        source_address = #{sourceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceNum != null" >
+        source_num = #{sourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="sourceMoney != null" >
+        source_money = #{sourceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sourcePrice != null" >
+        source_price = #{sourcePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bei.tally.entity.Source" >
+    update t_source
+    set source_name = #{sourceName,jdbcType=VARCHAR},
+      source_phone = #{sourcePhone,jdbcType=VARCHAR},
+      source_address = #{sourceAddress,jdbcType=VARCHAR},
+      source_num = #{sourceNum,jdbcType=INTEGER},
+      source_money = #{sourceMoney,jdbcType=DECIMAL},
+      source_price = #{sourcePrice,jdbcType=DECIMAL},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
