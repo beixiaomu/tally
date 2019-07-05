@@ -68,6 +68,7 @@
 		</where>
 		ORDER BY create_date DESC
 	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		t_produce

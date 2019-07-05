@@ -8,7 +8,6 @@
  */
 package com.bei.tally.controller;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -39,56 +38,50 @@ public class ProduceController {
 
 	@RequestMapping(value = "addProduceUI", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public String toProduceUI() {
+	public String toProduceUI(Model model, Produce produce) {
 		System.out.println("****************addProduceUI*******************");
+		Produce produce2 = null;
+		if (null != produce.getId()) {
+			System.out.println("****************edit*******************");
+			produce2 = produceService.get(produce.getId());
+		}
+
+		model.addAttribute("produce", produce2);
 		return "admin/addProduce";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "save", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public Resp<Produce> save(Model model, Resp<Produce> resp,  Produce produce) {
+	public Resp<Produce> save(Model model, Resp<Produce> resp, Produce produce) {
 		System.out.println("****************save*******************");
+		if (null != produce.getId()) {
+			produce.setDelFlag("0");
+			produce.setCreateBy("0");
+			produce.setCreateDate(new Date());
+
+			produceService.save(produce);
+			model.addAttribute("code", 200);
+			resp.setCode(200);
+			resp.setMsg("操作成功！");
+			return resp;
+		}
 		Produce produce2 = new Produce();
 		produce2.setProductName(produce.getProductName());
-		if(null!=produceService.findList(produce2)){
+		if (produceService.findList(produce2).size() > 0) {
 			resp.setCode(400);
-			resp.setMsg("项目名已经存在，添加失败！");
+			resp.setMsg("项目名已经存在，操作失败！");
 			return resp;
-		};
+		}
+		;
 		produce.setDelFlag("0");
 		produce.setCreateBy("0");
 		produce.setCreateDate(new Date());
-		
+
 		produceService.save(produce);
 		model.addAttribute("code", 200);
 		resp.setCode(200);
-		resp.setMsg("添加成功！");
-		return resp;
-	}
-
-	@RequestMapping(value = "delete", method = { RequestMethod.POST,
-			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public String delete() {
-		System.out.println("****************delete*******************");
-
-		return "admin/welcome";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "getapp", method = { RequestMethod.POST,
-			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public Resp<Produce> getapp(Resp<Produce> resp, Integer id) {
-		System.out.println("****************get*******************");
-		Produce entity = null;
-		if (StringUtils.isNotBlank(id.toString())) {
-			entity = produceService.get(id);
-		}
-		if (entity == null) {
-			entity = new Produce();
-		}
-		resp.setData(entity);
-		System.out.println(resp.toString());
+		resp.setMsg("操作成功！");
 		return resp;
 	}
 
@@ -111,4 +104,22 @@ public class ProduceController {
 		return "admin/listProduce";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "delete", method = { RequestMethod.POST,
+			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
+	public Resp<Produce> delete(Resp<Produce> resp, Integer id) {
+		System.out.println("****************delete*******************");
+		int rel = 0;
+		if (StringUtils.isNotBlank(id.toString())) {
+			rel = produceService.delete(id);
+		}
+		if (rel > 0) {
+			resp.setCode(200);
+			resp.setMsg("操作成功！");
+			return resp;
+		}
+		resp.setCode(400);
+		resp.setMsg("操作失败！");
+		return resp;
+	}
 }

@@ -1,5 +1,7 @@
 package com.bei.tally.dao;
 
+import java.util.List;
+
 import com.bei.tally.entity.TypeCost;
 
 public interface TypeCostMapper {
@@ -38,4 +40,6 @@ public interface TypeCostMapper {
      * @mbggenerated 2019-06-28
      */
     int updateByPrimaryKey(TypeCost record);
+    
+    List<TypeCost> findList(TypeCost entity);
 }

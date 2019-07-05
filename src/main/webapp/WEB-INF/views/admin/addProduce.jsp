@@ -57,7 +57,7 @@ body {
 					<div class="col-sm-3">
 
 						<input type="text" class="form-control" id="productName"
-							placeholder="请输入产品名称">
+							value="${ produce.productName}" placeholder="请输入产品名称">
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@ body {
 					<label for="productCost" class="col-sm-2 control-label">成本：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="productCost"
-							placeholder="请输入成本">
+							value="${ produce.productCost}" placeholder="请输入成本">
 					</div>
 				</div>
 
@@ -85,12 +85,14 @@ body {
 					<label for="remark" class="col-sm-2 control-label">备注：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="remark"
-							placeholder="请输入备注">
+							value="${ produce.remark}" placeholder="请输入备注"> <input
+							type="hidden" class="form-control" id="id" value="${ produce.id}">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="button" class="btn btn-default" onclick="save()">添加</button>
+						<button type="button" class="btn btn-default" onclick="back()">返回上一页</button>
 					</div>
 				</div>
 			</form>
@@ -105,33 +107,9 @@ body {
 		 * 编辑的事件处理
 		 * @param id
 		 */
-		function edit(id) {
-			isUpdate = true;
-			$
-					.ajax({
-						url : "${pageContext.request.contextPath}/info/student/expense/select/"
-								+ id,
-						type : "GET",
-						dataType : "json",
-						success : function(r) {
-							if (r.status == 200) {
-								$("#name").val(r.data.sname);
-								$("#hideenId").val(r.data.sid);
-								$("#age-text").val(r.data.sage);
-								$("#major-text").val(r.data.ssex);
-							} else {
-								alert("加载数据错误");
-							}
-						},
-						error : function(data) {
-							alert(data.msg);
-						}
-					});
-		}
-
 		function save() {
 			var url = "${pageContext.request.contextPath}/produce/save";
-			
+
 			$.ajax({
 				url : url,
 				type : "POST",
@@ -141,12 +119,12 @@ body {
 					productType : $("#productType").val(),
 					productCost : $("#productCost").val(),
 					remark : $("#remark").val(),
+					id : $("#id").val(),
 				},
 				success : function(r) {
 					if (r.code == 200) {
 						alert(r.msg);
 						location.reload();
-						
 					}
 					if (r.code == 400) {
 						alert(r.msg);
@@ -155,65 +133,8 @@ body {
 				}
 			});
 		}
-
-		/**
-		 * 删除
-		 * @param id
-		 */
-		function del(id) {
-			$
-					.ajax({
-						url : "${pageContext.request.contextPath}/info/student/expense/delete/"
-								+ id,
-						type : "GET",
-						dataType : "json",
-						success : function(data) {
-							if (data.status == 200) {
-								location.reload()
-							} else {
-								alert(data.msg);
-							}
-						},
-						error : function(data) {
-							alert("删除失败");
-						}
-					})
-		}
-
-		/**
-		 * 添加
-		 **/
-		function add() {
-			isUpdate = false;
-		}
-
-		/**
-		 * 编辑一个
-		 */
-		function editOne() {
-			var tdIds = $("[name='btSelectItem']:checked").parent().next();
-			if (tdIds.length > 1 || tdIds.length == 0) {
-				alert("只能选择一条数据进行修改");
-				return;
-			}
-			edit(tdIds[0].innerText);
-			$("#studentModal").modal();
-
-		}
-
-		/**
-		 * 删除一条
-		 */
-		function delOne() {
-			var tdIds = $("[name='btSelectItem']:checked").parent().next();
-			if (tdIds.length > 1 || tdIds.length == 0) {
-				alert("只能选择一条数据进行删除");
-				return;
-			}
-			del(tdIds[0].innerText);
-		}
-		function importStudent() {
-			$("#importForm").submit();
+		function back() {
+			window.history.back(-1);
 		}
 	</script>
 </body>

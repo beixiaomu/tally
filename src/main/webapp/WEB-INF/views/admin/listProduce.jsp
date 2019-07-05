@@ -45,29 +45,15 @@ body {
 		<div class="panel-body">
 			<table class="table table-bordered">
 				<caption>
-					<!-- <button type="button" class="btn btn-default" onclick="add()">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
-				</button> -->
-					<button type="button" class="btn btn-default" onclick="editOne()"
-						disabled>
-						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>添加
+					<button type="button" class="btn btn-default">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						<a href="${ctx}/produce/addProduceUI" target="right">添加</a>
 					</button>
-					<button type="button" class="btn btn-default" onclick="delOne()"
-						>
+					<button type="button" class="btn btn-default" onclick="delOne()">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 					</button>
-					<!-- <button type="button" class="btn btn-default">
-					<span class="glyphicon glyphicon-export" aria-hidden="true"></span>导入
-				</button> -->
-					<!-- <button type="button" class="btn btn-default">
-					<span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
-				</button> -->
-					<a id="export" class="btn btn-default"
-						href="${pageContext.request.contextPath}/fillinfo/export"> <span
-						class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
-					</a>
 				</caption>
-				<thead  class="th">
+				<thead class="th">
 					<tr>
 						<th><input type="checkbox" lay-skin="primary"
 							lay-filter="allChoose" name="" title=""></th>
@@ -84,21 +70,13 @@ body {
 							<td><input type="checkbox" lay-skin="primary"
 								lay-filter="itemChoose" name="" title=""></td>
 							<td>${c.productName }</td>
-							<%-- <td><c:if test="${c.facilityno == 1}">餐厅</c:if> <c:if
-									test="${c.facilityno == 2}">水控</c:if> <c:if
-									test="${c.facilityno == 3}">门禁</c:if></td> --%>
-
 							<td>${c.productType }</td>
 							<td>${c.productCost }</td>
 							<td>${c.remark }</td>
+							<td><a class="btn bg-primary"
+								href="${ctx}/produce/addProduceUI?id=${c.id }" target="right">编辑</a>
 
-							
-							<td>
-								<button class="btn bg-primary" onclick="edit(${c.id })"
-									data-toggle="modal" data-target="#studentModal"
-									data-whatever="编辑" disabled>编辑</button>
-								<button class="btn btn-danger" onclick="del(${c.id })"
-									disabled>删除</button>
+								<button class="btn btn-danger" onclick="del(${c.id })">删除</button>
 							</td>
 
 						</tr>
@@ -113,75 +91,23 @@ body {
 	<script src="${ctxStatic}/js/admin/bootstrap.min.js"></script>
 	<script>
 		/**
-		 * 编辑的事件处理
-		 * @param id
-		 */
-		function edit(id) {
-			isUpdate = true;
-			$
-					.ajax({
-						url : "${pageContext.request.contextPath}/info/student/expense/select/"
-								+ id,
-						type : "GET",
-						dataType : "json",
-						success : function(r) {
-							if (r.status == 200) {
-								$("#name").val(r.data.sname);
-								$("#hideenId").val(r.data.sid);
-								$("#age-text").val(r.data.sage);
-								$("#major-text").val(r.data.ssex);
-							} else {
-								alert("加载数据错误");
-							}
-						},
-						error : function(data) {
-							alert(data.msg);
-						}
-					});
-		}
-
-		function saveOrUpdate() {
-			var url = "${pageContext.request.contextPath}/slotcard/add";
-			if (isUpdate) {
-				url = "${pageContext.request.contextPath}/slotcard/update/"
-						+ $("#hideenId").val();
-			}
-			$.ajax({
-				url : url,
-				type : "POST",
-				dataType : "json",
-				data : {
-					sname : $("#name").val(),
-					sage : $("#age-text").val(),
-					sdept : $("#major-text").val(),
-				},
-				success : function(r) {
-					if (r.status == 200) {
-						location.reload()
-					}
-					if (r.status == 500) {
-						alert("新增成功");
-					}
-				}
-			});
-		}
-
-		/**
 		 * 删除
 		 * @param id
 		 */
 		function del(id) {
 			$
 					.ajax({
-						url : "${pageContext.request.contextPath}/info/student/expense/delete/"
+						url : "${pageContext.request.contextPath}/produce/delete?id="
 								+ id,
 						type : "GET",
 						dataType : "json",
 						success : function(data) {
-							if (data.status == 200) {
-								location.reload()
+							if (data.code == 200) {
+								alert(data.msg);
+								location.reload();
 							} else {
 								alert(data.msg);
+								location.reload();
 							}
 						},
 						error : function(data) {
@@ -190,13 +116,7 @@ body {
 					})
 		}
 
-		/**
-		 * 添加
-		 **/
-		function add() {
-			isUpdate = false;
-		}
-
+		
 		/**
 		 * 编辑一个
 		 */
@@ -222,9 +142,7 @@ body {
 			}
 			del(tdIds[0].innerText);
 		}
-		function importStudent() {
-			$("#importForm").submit();
-		}
+		
 	</script>
 </body>
 

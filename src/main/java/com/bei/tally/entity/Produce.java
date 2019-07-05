@@ -2,6 +2,8 @@ package com.bei.tally.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Produce {
 	/**
 	 * 产品主键
@@ -41,6 +43,7 @@ public class Produce {
 	/**
 	 * 创建时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createDate;
 
 	/**
@@ -51,8 +54,11 @@ public class Produce {
 	/**
 	 * 更新时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date beginCreateDate; // 开始 消费时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date endCreateDate; // 结束 消费时间
 
 	/**

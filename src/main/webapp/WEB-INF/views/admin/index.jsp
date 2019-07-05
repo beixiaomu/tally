@@ -26,7 +26,9 @@
 	height: 870px;
 }
 
-
+.panel-collapse {
+	margin-left: 35px;
+}
 </style>
 </head>
 
@@ -132,9 +134,24 @@
 							<a href="#four" data-toggle="collapse" data-parent="#accordion">入库管理</a>
 						</div>
 						<div id="four" class="panel-collapse collapse">
-							<div class="panel-body">库存清单</div>
 							<div class="panel-body">
-								<a href="${ctx}/index/inStorage" target="right">入库</a>
+								<a href="${ctx}/store/findList" target="right">库存清单</a>
+							</div>
+							<div class="panel-body">
+								<a href="${ctx}/store/addStoreUI" target="right">入库</a>
+							</div>
+							
+							<div class="panel-body">
+								<a href="${ctx}/cost/findList" target="right">费用列表</a>
+							</div>
+							<div class="panel-body">
+								<a href="${ctx}/cost/addCostUI" target="right">费用添加</a>
+							</div>
+							<div class="panel-body">
+								<a href="${ctx}/source/findList" target="right">货源列表</a>
+							</div>
+							<div class="panel-body">
+								<a href="${ctx}/source/addSourceUI" target="right">货源添加</a>
 							</div>
 							<div class="panel-body">统计分析</div>
 						</div>
@@ -171,13 +188,17 @@
 						</div>
 						<div id="seven" class="panel-collapse collapse">
 							<div class="panel-body">
-							<a href="${ctx}/produce/findList" target="right">产品列表</a>
+								<a href="${ctx}/produce/findList" target="right">产品列表</a>
 							</div>
 							<div class="panel-body">
-							<a href="${ctx}/produce/addProduceUI" target="right">添加产品</a>
+								<a href="${ctx}/produce/addProduceUI" target="right">添加产品</a>
 							</div>
-							<div class="panel-body">类别列表</div>
-							<div class="panel-body">添加类别</div>
+							<div class="panel-body">
+								<a href="${ctx}/typeCost/findList" target="right">类别列表</a>
+							</div>
+							<div class="panel-body">
+								<a href="${ctx}/typeCost/addTypeCostUI" target="right">添加类别</a>
+							</div>
 						</div>
 
 
@@ -186,8 +207,7 @@
 			</div>
 			<div class="col-md-9 content">
 				<iframe name="right" src="${ctx}/index/welcome" width='100%'
-					height='100%' frameborder='0'>
-				</iframe>
+					height='100%' frameborder='0'> </iframe>
 
 			</div>
 		</div>

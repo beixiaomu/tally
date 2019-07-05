@@ -9,6 +9,7 @@
     <result column="source_num" property="sourceNum" jdbcType="INTEGER" />
     <result column="source_money" property="sourceMoney" jdbcType="DECIMAL" />
     <result column="source_price" property="sourcePrice" jdbcType="DECIMAL" />
+    <result column="source_test" property="sourceTest" jdbcType="VARCHAR" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
@@ -18,7 +19,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, source_name, source_phone, source_address, source_num, source_money, source_price, 
-    del_flag, remark, create_by, create_date, update_by, update_date
+    source_test, del_flag, remark, create_by, create_date, update_by, update_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -33,14 +34,14 @@
   <insert id="insert" parameterType="com.bei.tally.entity.Source" >
     insert into t_source (id, source_name, source_phone, 
       source_address, source_num, source_money, 
-      source_price, del_flag, remark, 
-      create_by, create_date, update_by, 
-      update_date)
+      source_price, source_test, del_flag, 
+      remark, create_by, create_date, 
+      update_by, update_date)
     values (#{id,jdbcType=INTEGER}, #{sourceName,jdbcType=VARCHAR}, #{sourcePhone,jdbcType=VARCHAR}, 
       #{sourceAddress,jdbcType=VARCHAR}, #{sourceNum,jdbcType=INTEGER}, #{sourceMoney,jdbcType=DECIMAL}, 
-      #{sourcePrice,jdbcType=DECIMAL}, #{delFlag,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
-      #{updateDate,jdbcType=TIMESTAMP})
+      #{sourcePrice,jdbcType=DECIMAL}, #{sourceTest,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bei.tally.entity.Source" >
     insert into t_source
@@ -65,6 +66,9 @@
       </if>
       <if test="sourcePrice != null" >
         source_price,
+      </if>
+      <if test="sourceTest != null" >
+        source_test,
       </if>
       <if test="delFlag != null" >
         del_flag,
@@ -107,6 +111,9 @@
       <if test="sourcePrice != null" >
         #{sourcePrice,jdbcType=DECIMAL},
       </if>
+      <if test="sourceTest != null" >
+        #{sourceTest,jdbcType=VARCHAR},
+      </if>
       <if test="delFlag != null" >
         #{delFlag,jdbcType=INTEGER},
       </if>
@@ -148,6 +155,9 @@
       <if test="sourcePrice != null" >
         source_price = #{sourcePrice,jdbcType=DECIMAL},
       </if>
+      <if test="sourceTest != null" >
+        source_test = #{sourceTest,jdbcType=VARCHAR},
+      </if>
       <if test="delFlag != null" >
         del_flag = #{delFlag,jdbcType=INTEGER},
       </if>
@@ -177,6 +187,7 @@
       source_num = #{sourceNum,jdbcType=INTEGER},
       source_money = #{sourceMoney,jdbcType=DECIMAL},
       source_price = #{sourcePrice,jdbcType=DECIMAL},
+      source_test = #{sourceTest,jdbcType=VARCHAR},
       del_flag = #{delFlag,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},

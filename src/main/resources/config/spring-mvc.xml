@@ -75,6 +75,10 @@
 			<!-- .do -->
 			<mvc:exclude-mapping path="/index/*" />
 			<mvc:exclude-mapping path="/produce/*" />
+			<mvc:exclude-mapping path="/store/*" />
+			<mvc:exclude-mapping path="/typeCost/*" />
+			<mvc:exclude-mapping path="/source/*" />
+			<mvc:exclude-mapping path="/cost/*" />
 			<bean class="com.bei.tally.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
