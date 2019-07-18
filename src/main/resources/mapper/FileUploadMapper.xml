@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bei.tally.dao.FileUploadMapper" >
+  <resultMap id="BaseResultMap" type="com.bei.tally.entity.FileUpload" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="t_file_title" property="tFileTitle" jdbcType="VARCHAR" />
+    <result column="t_file_url" property="tFileUrl" jdbcType="VARCHAR" />
+    <result column="t_file_size" property="tFileSize" jdbcType="VARCHAR" />
+    <result column="t_file_type" property="tFileType" jdbcType="VARCHAR" />
+    <result column="t_file_describe" property="tFileDescribe" jdbcType="VARCHAR" />
+    <result column="t_file_count" property="tFileCount" jdbcType="VARCHAR" />
+    <result column="t_create_by" property="tCreateBy" jdbcType="INTEGER" />
+    <result column="t_create_date" property="tCreateDate" jdbcType="DATE" />
+    <result column="t_update_by" property="tUpdateBy" jdbcType="INTEGER" />
+    <result column="t_update_date" property="tUpdateDate" jdbcType="DATE" />
+    <result column="t_reserved1" property="tReserved1" jdbcType="VARCHAR" />
+    <result column="t_reserved2" property="tReserved2" jdbcType="VARCHAR" />
+    <result column="t_reserved3" property="tReserved3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, t_file_title, t_file_url, t_file_size, t_file_type, t_file_describe, t_file_count, 
+    t_create_by, t_create_date, t_update_by, t_update_date, t_reserved1, t_reserved2, 
+    t_reserved3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_file_upload
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.bei.tally.entity.FileUpload">
+		select
+		<include refid="Base_Column_List" />
+		from t_file_upload
+		<where>
+			<if test="id != null and id != ''">
+				AND id = #{id}
+			</if>
+			<if test="tFileTitle != null and tFileTitle != ''">
+				AND t_file_title = #{tFileTitle}
+			</if>
+			<if test="tFileUrl != null and tFileUrl != ''">
+				AND t_file_url = #{tFileUrl}
+			</if>
+			<if test="tFileSize != null and tFileSize != ''">
+				AND t_file_size = #{tFileSize}
+			</if>
+			<if test="tFileType != null and tFileType != ''">
+				AND t_file_type = #{tFileType}
+			</if>
+			<if test="tFileDescribe != null and tFileDescribe != ''">
+				AND t_file_describe = #{tFileDescribe}
+			</if>
+			<if test="tFileCount != null and tFileCount != ''">
+				AND t_file_count = #{tFileCount}
+			</if>
+			<if test="tCreateBy != null and tCreateBy != ''">
+				AND t_create_by = #{tCreateBy}
+			</if>
+			<if test="tUpdateBy != null and tUpdateBy != ''">
+				AND t_update_by = #{tUpdateBy}
+			</if>
+			<if
+				test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
+				AND t_create_date BETWEEN #{beginCreateDate} AND
+				#{endCreateDate}
+			</if>
+			<!-- <if test="remark != null and remark != ''">
+				AND a.sto_adress LIKE
+				concat('%',#{remark},'%')
+			</if> -->
+
+		</where>
+		<!--ORDER BY t_create_date DESC-->
+	</select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_file_upload
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bei.tally.entity.FileUpload" >
+    insert into t_file_upload (id, t_file_title, t_file_url, 
+      t_file_size, t_file_type, t_file_describe, 
+      t_file_count, t_create_by, t_create_date, 
+      t_update_by, t_update_date, t_reserved1, 
+      t_reserved2, t_reserved3)
+    values (#{id,jdbcType=INTEGER}, #{tFileTitle,jdbcType=VARCHAR}, #{tFileUrl,jdbcType=VARCHAR}, 
+      #{tFileSize,jdbcType=VARCHAR}, #{tFileType,jdbcType=VARCHAR}, #{tFileDescribe,jdbcType=VARCHAR}, 
+      #{tFileCount,jdbcType=VARCHAR}, #{tCreateBy,jdbcType=INTEGER}, #{tCreateDate,jdbcType=DATE}, 
+      #{tUpdateBy,jdbcType=INTEGER}, #{tUpdateDate,jdbcType=DATE}, #{tReserved1,jdbcType=VARCHAR}, 
+      #{tReserved2,jdbcType=VARCHAR}, #{tReserved3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bei.tally.entity.FileUpload" >
+    insert into t_file_upload
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tFileTitle != null" >
+        t_file_title,
+      </if>
+      <if test="tFileUrl != null" >
+        t_file_url,
+      </if>
+      <if test="tFileSize != null" >
+        t_file_size,
+      </if>
+      <if test="tFileType != null" >
+        t_file_type,
+      </if>
+      <if test="tFileDescribe != null" >
+        t_file_describe,
+      </if>
+      <if test="tFileCount != null" >
+        t_file_count,
+      </if>
+      <if test="tCreateBy != null" >
+        t_create_by,
+      </if>
+      <if test="tCreateDate != null" >
+        t_create_date,
+      </if>
+      <if test="tUpdateBy != null" >
+        t_update_by,
+      </if>
+      <if test="tUpdateDate != null" >
+        t_update_date,
+      </if>
+      <if test="tReserved1 != null" >
+        t_reserved1,
+      </if>
+      <if test="tReserved2 != null" >
+        t_reserved2,
+      </if>
+      <if test="tReserved3 != null" >
+        t_reserved3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tFileTitle != null" >
+        #{tFileTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileUrl != null" >
+        #{tFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileSize != null" >
+        #{tFileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileType != null" >
+        #{tFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileDescribe != null" >
+        #{tFileDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileCount != null" >
+        #{tFileCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateBy != null" >
+        #{tCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tCreateDate != null" >
+        #{tCreateDate,jdbcType=DATE},
+      </if>
+      <if test="tUpdateBy != null" >
+        #{tUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tUpdateDate != null" >
+        #{tUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="tReserved1 != null" >
+        #{tReserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="tReserved2 != null" >
+        #{tReserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="tReserved3 != null" >
+        #{tReserved3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bei.tally.entity.FileUpload" >
+    update t_file_upload
+    <set >
+      <if test="tFileTitle != null" >
+        t_file_title = #{tFileTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileUrl != null" >
+        t_file_url = #{tFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileSize != null" >
+        t_file_size = #{tFileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileType != null" >
+        t_file_type = #{tFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileDescribe != null" >
+        t_file_describe = #{tFileDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="tFileCount != null" >
+        t_file_count = #{tFileCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateBy != null" >
+        t_create_by = #{tCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tCreateDate != null" >
+        t_create_date = #{tCreateDate,jdbcType=DATE},
+      </if>
+      <if test="tUpdateBy != null" >
+        t_update_by = #{tUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tUpdateDate != null" >
+        t_update_date = #{tUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="tReserved1 != null" >
+        t_reserved1 = #{tReserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="tReserved2 != null" >
+        t_reserved2 = #{tReserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="tReserved3 != null" >
+        t_reserved3 = #{tReserved3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bei.tally.entity.FileUpload" >
+    update t_file_upload
+    set t_file_title = #{tFileTitle,jdbcType=VARCHAR},
+      t_file_url = #{tFileUrl,jdbcType=VARCHAR},
+      t_file_size = #{tFileSize,jdbcType=VARCHAR},
+      t_file_type = #{tFileType,jdbcType=VARCHAR},
+      t_file_describe = #{tFileDescribe,jdbcType=VARCHAR},
+      t_file_count = #{tFileCount,jdbcType=VARCHAR},
+      t_create_by = #{tCreateBy,jdbcType=INTEGER},
+      t_create_date = #{tCreateDate,jdbcType=DATE},
+      t_update_by = #{tUpdateBy,jdbcType=INTEGER},
+      t_update_date = #{tUpdateDate,jdbcType=DATE},
+      t_reserved1 = #{tReserved1,jdbcType=VARCHAR},
+      t_reserved2 = #{tReserved2,jdbcType=VARCHAR},
+      t_reserved3 = #{tReserved3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
