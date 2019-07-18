@@ -2,6 +2,9 @@ package com.bei.tally.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.bei.tally.entity.Analyse;
 import com.bei.tally.entity.Store;
 
 public interface StoreMapper {
@@ -42,4 +45,10 @@ public interface StoreMapper {
 	int updateByPrimaryKey(Store record);
 
 	List<Store> findList(Store entity);
+
+	Analyse findAnalyseOne(@Param("id") Integer id);
+
+	List<Analyse> findAnalyse(@Param("id") Integer id);
+
+	Analyse findCount(@Param("id") Integer id);
 }

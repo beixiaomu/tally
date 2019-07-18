@@ -121,9 +121,8 @@
 							<a href="#three" data-toggle="collapse" data-parent="#accordion">文件管理</a>
 						</div>
 						<div id="three" class="panel-collapse collapse">
-							<div class="panel-body">文件上传</div>
-							<div class="panel-body">文件下载</div>
-							<div class="panel-body">内容类别</div>
+							<div class="panel-body"><a href="${ctx}/fileUpload/addFileUploadUI" target="right">文件上传</a></div>
+							<div class="panel-body"><a href="${ctx}/fileUpload/findList" target="right">文件下载</a></div>
 						</div>
 
 					</div>

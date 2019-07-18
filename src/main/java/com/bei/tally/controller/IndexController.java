@@ -8,16 +8,26 @@
  */
 package com.bei.tally.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bei.tally.cts.Resp;
+import com.bei.tally.entity.FileUpload;
 import com.bei.tally.entity.Produce;
+import com.bei.tally.service.FileUploadService;
 import com.bei.tally.service.ProduceService;
+import com.bei.tally.util.ftp.FtpUtil;
 
 /**
  * @ClassName: IndexController
@@ -31,6 +41,8 @@ import com.bei.tally.service.ProduceService;
 public class IndexController {
 	@Autowired
 	private ProduceService produceService;
+	@Autowired
+	private FileUploadService fileUploadService;
 
 	@ResponseBody
 	@RequestMapping(value = "getapp", method = { RequestMethod.POST,
@@ -132,4 +144,72 @@ public class IndexController {
 		System.out.println("***********************************");
 		return "login/red";
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "upload", method = { RequestMethod.POST,
+			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
+	public Resp<FileUpload> upload(Resp<FileUpload> resp, @RequestParam("file") MultipartFile file,
+			FileUpload fileUpload, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("******************upload*****************");
+		resp.setCode(400);
+		resp.setMsg("上传失败");
+		resp.setData(null);
+		String path = FtpUtil.ftpUp(file);
+
+		if (null != path || "".equals(path)) {
+			String typeName = file.getOriginalFilename();
+			int intold = typeName.lastIndexOf('.');
+			// String old = typeName.substring(intold);
+			String ttype = typeName.substring(intold + 1);
+			fileUpload.settCreateBy(1);
+			fileUpload.settFileTitle(file.getOriginalFilename());
+			fileUpload.settFileUrl(path);
+			Long size = file.getSize();
+
+			fileUpload.settFileSize(size.toString());
+			fileUpload.settFileType(ttype);
+			fileUpload.settFileDescribe("这是一个文件...");
+			fileUpload.settFileCount("0");
+
+			fileUploadService.save(fileUpload);
+
+			resp.setCode(200);
+			resp.setMsg("上传成功");
+			resp.setData(fileUpload);
+		}
+
+		//
+		// String name = file.getName();
+		// Long size = file.getSize();
+		// String type = file.getContentType();
+		// String typeName = file.getOriginalFilename();
+		// System.out.println("文件名：" + name + "文件大小：" + size + "mime类型：" + type +
+		// "文件类型:" + typeName);
+		//
+		// InputStream fis = (InputStream) file.getInputStream();
+		//
+		// System.out.println("******************fis*****************" + fis);
+		//
+		// System.out.println("******************file*****************");
+		//
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		//
+		// String date = sdf.format(new Date());
+		//
+		// // 避免文件名重复使用uuid来避免,产生一个随机的uuid字符
+		// String realFileName = Uuidd.getStringRandom(6);
+		// int intold =typeName.lastIndexOf('.');
+		// String old = typeName.substring(intold);
+		// String ttype = typeName.substring(intold+1);
+		// String news = realFileName+realFileName + old;
+		// System.out.println("intold" + intold);
+		// System.out.println("date" + date);
+		// System.out.println("old" + old);
+		// System.out.println("news" + news);
+		// System.out.println("realFileName" + realFileName);
+		// String repaht = FtpUtil.ftpUpload(ttype+"/"+date, news, fis);
+		// System.out.println("repaht" + repaht);
+		return resp;
+	}
+
 }

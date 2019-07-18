@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bei.tally.cts.Resp;
 import com.bei.tally.entity.Source;
-import com.bei.tally.entity.TypeCost;
 import com.bei.tally.service.SourceService;
-import com.bei.tally.service.TypeCostService;
 
 /**
  * @ClassName: IndexController
@@ -37,16 +35,17 @@ import com.bei.tally.service.TypeCostService;
 public class SourceController {
 	@Autowired
 	private SourceService sourceService;
-	@Autowired
-	private TypeCostService typeCostService;
+	// @Autowired
+	// private TypeCostService typeCostService;
 
 	@RequestMapping(value = "addSourceUI", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	public String toSourceUI(Model model, Source source, String productId) {
 		System.out.println("****************addSourceUI*******************");
-		TypeCost typeSource = new TypeCost();
-		typeSource.setProductId(productId);
-		List<TypeCost> tcList = typeCostService.findList(typeSource);
+		// TypeCost typeSource = new TypeCost();
+		// typeSource.setProductId(productId);
+		// List<TypeCost> tcList = typeCostService.findList(typeSource);
+		// List<Source> sList = sourceService.findList(source);
 
 		Source source2 = null;
 		if (null != source.getId()) {
@@ -54,7 +53,7 @@ public class SourceController {
 			source2 = sourceService.get(source.getId());
 		}
 
-		model.addAttribute("tcList", tcList);
+		// model.addAttribute("sList", sList);
 		model.addAttribute("source", source2);
 		return "admin/addSource";
 	}

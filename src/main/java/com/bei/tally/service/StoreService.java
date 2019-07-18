@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bei.tally.dao.StoreMapper;
+import com.bei.tally.entity.Analyse;
 import com.bei.tally.entity.Store;
 
 /**
@@ -60,6 +61,19 @@ public class StoreService implements BaseService<Store> {
 
 	public List<Store> findPage(Integer offset, Store t, Integer pageSize) {
 		return null;
+	}
+
+	public Analyse findAnalyseOne(Integer id) {
+		System.out.println("******:"+id);
+		return storeMapper.findAnalyseOne(id);
+	}
+
+	public List<Analyse> findAnalyse(Integer id) {
+		return storeMapper.findAnalyse(id);
+	}
+
+	public Analyse findCount(Integer id) {
+		return storeMapper.findCount(id);
 	}
 
 }

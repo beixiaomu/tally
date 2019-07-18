@@ -63,7 +63,7 @@ body {
 					<label for="sourceTest" class="col-sm-2 control-label">入库编号：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourceTest"
-							value="${ source.sourceTest}" placeholder="请输入编号">
+							value="${source.sourceTest}" placeholder="请输入编号">
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@ body {
 					<label for="sourceName" class="col-sm-2 control-label">姓名：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourceName"
-							value="${ source.sourceName}" placeholder="请输入单价">
+							value="${source.sourceName}" placeholder="请输入单价">
 					</div>
 				</div>
 
@@ -79,42 +79,42 @@ body {
 					<label for="sourcePhone" class="col-sm-2 control-label">手机号：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourcePhone"
-							value="${ source.sourcePhone}" placeholder="请输入联系方式">
+							value="${source.sourcePhone}" placeholder="请输入联系方式">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="sourceAddress" class="col-sm-2 control-label">货源地址：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourceAddress"
-							value="${ source.sourceAddress}" placeholder="请输入货源地址">
+							value="${source.sourceAddress}" placeholder="请输入货源地址">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="sourceNum" class="col-sm-2 control-label">数量：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourceNum"
-							value="${ source.sourceNum}" placeholder="请输入数量">
+							value="${source.sourceNum}" placeholder="请输入数量">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="sourcePrice" class="col-sm-2 control-label">单价：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourcePrice"
-							value="${ source.sourcePrice}" placeholder="请输入单价">
+							value="${source.sourcePrice}" placeholder="请输入单价">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="sourceMoney" class="col-sm-2 control-label">总计：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="sourceMoney"
-							value="${ source.sourceMoney}" placeholder="请输入总费用">
+							value="${source.sourceMoney}" placeholder="请输入总费用">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="remark" class="col-sm-2 control-label">备注：</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control" id="remark"
-							value="${ source.remark}" placeholder="请输入备注">
+							value="${source.remark}" placeholder="请输入备注">
 					</div>
 				</div>
 				<div class="form-group">

@@ -338,6 +338,12 @@
 		  <artifactId>junit-jupiter-params</artifactId>
 		  <version>5.4.2</version>
 		</dependency>
+		<!-- ftp -->
+		<dependency>
+		    <groupId>commons-net</groupId>
+		    <artifactId>commons-net</artifactId>
+		    <version>1.4.1</version>
+		</dependency>
 		
 		<!-- JFINAL -->
 		<!-- <dependency>

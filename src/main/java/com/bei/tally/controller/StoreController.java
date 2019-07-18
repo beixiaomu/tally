@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bei.tally.cts.Resp;
+import com.bei.tally.entity.Analyse;
 import com.bei.tally.entity.Produce;
 import com.bei.tally.entity.Store;
 import com.bei.tally.service.ProduceService;
@@ -39,37 +40,43 @@ public class StoreController {
 	private StoreService storeService;
 	@Autowired
 	private ProduceService produceService;
+	// @Autowired
+	// private CostService costService;
+	// @Autowired
+	// private CostService costService;
 
 	@RequestMapping(value = "analyseUI", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public String analyseUI(Model model, Store store,Produce produce) {
-		System.out.println("****************addStoreUI*******************");
+	public String analyseUI(Model model, Store store, Produce produce) {
+		System.out.println("****************analyseUI*******************");
 		/**
 		 * 通过入库编号查询出杂七杂八的费用，
 		 */
-		
-		
-		List<Produce> proList = produceService.findList(produce);
-		Store store2 = null;
-		if (null != store.getId()) {
-			System.out.println("****************edit*******************");
-			store2 = storeService.get(store.getId());
-		}
-		model.addAttribute("proList",proList);
-		model.addAttribute("store", store2);
-		return "admin/addStore";
+		Analyse analyse = new Analyse();
+		Analyse analyse2 = new Analyse();
+		System.out.println("******:"+store.getId());
+		analyse = storeService.findAnalyseOne(store.getId());
+		List<Analyse> analysesList = storeService.findAnalyse(store.getId());
+		analyse2 = storeService.findCount(store.getId());
+
+		model.addAttribute("analyse", analyse);
+		model.addAttribute("analysesList", analysesList);
+		model.addAttribute("analyse2", analyse2);
+		return "admin/listAnalyse";
 	}
+
 	@RequestMapping(value = "addStoreUI", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
-	public String toStoreUI(Model model, Store store,Produce produce) {
+	public String toStoreUI(Model model, Store store, Produce produce) {
+		System.out.println(produce.getId());
 		System.out.println("****************addStoreUI*******************");
-		List<Produce> proList = produceService.findList(produce);
+		List<Produce> proList = produceService.findList(new Produce());
 		Store store2 = null;
 		if (null != store.getId()) {
 			System.out.println("****************edit*******************");
 			store2 = storeService.get(store.getId());
 		}
-		model.addAttribute("proList",proList);
+		model.addAttribute("proList", proList);
 		model.addAttribute("store", store2);
 		return "admin/addStore";
 	}

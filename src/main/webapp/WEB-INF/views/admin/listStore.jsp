@@ -107,7 +107,7 @@ body {
 								
 								<button class="btn btn-danger" onclick="del(${c.id })" >删除</button>
 								<a type="button" class="btn bg-primary" href="${ctx}/cost/addCostUI?id=${c.id }&&productId=${c.productId}" target="right">添加费用</a>
-								<a type="button" class="btn bg-primary" href="${ctx}/store/analyseUI?id=${c.id }&&productId=${c.productId}" target="right">添加费用</a>
+								<a type="button" class="btn bg-primary" href="${ctx}/store/analyseUI?id=${c.id }&&productId=${c.productId}" target="right">统计分析</a>
 							</td>
 
 						</tr>
