@@ -113,7 +113,7 @@ public class IndexController {
 	@RequestMapping(value = "login", method = { RequestMethod.POST,
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	public String login() {
-		System.out.println("***********************************");
+		System.out.println("****************1*******************");
 		return "login/index";
 	}
 

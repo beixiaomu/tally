@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bei</groupId>
-  <artifactId>tally</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>tally Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.bei</groupId>
+	<artifactId>tally</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>tally Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -18,16 +18,16 @@
 		<slf4j.version>1.6.6</slf4j.version>
 		<log4j.version>1.2.12</log4j.version>
 	</properties>
-  
-  
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-     <!-- Spring 依赖 -->
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Spring 依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -184,39 +184,29 @@
 		</dependency>
 
 		<!-- Logging with SLF4J & LogBack -->
-		<!-- <dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>${log4j.version}</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-api</artifactId> <version>${slf4j.version}</version> </dependency> 
+			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>${slf4j.version}</version> </dependency> -->
+		<!--LOG4日志 start -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
+			<version>1.6.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency> -->
-<!--LOG4日志 start  -->
-        <dependency>  
-            <groupId>org.slf4j</groupId>  
-            <artifactId>slf4j-api</artifactId>  
-            <version>1.6.6</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>org.slf4j</groupId>  
-            <artifactId>slf4j-log4j12</artifactId>  
-            <version>1.6.6</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>log4j</groupId>  
-            <artifactId>log4j</artifactId>  
-            <version>1.2.16</version>  
-        </dependency>  
-        <!--LOG4日志 end  -->
-        
+			<version>1.6.6</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<!--LOG4日志 end -->
+
 		<!-- 测试依懒 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -332,66 +322,83 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.2</version>
 		</dependency>
-		
+
 		<dependency>
-		  <groupId>org.junit.jupiter</groupId>
-		  <artifactId>junit-jupiter-params</artifactId>
-		  <version>5.4.2</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>5.4.2</version>
 		</dependency>
 		<!-- ftp -->
 		<dependency>
-		    <groupId>commons-net</groupId>
-		    <artifactId>commons-net</artifactId>
-		    <version>1.4.1</version>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>1.4.1</version>
 		</dependency>
+		<!-- 二维码 -->
+		<!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
+<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+
+		<!-- 极光推送 -->
+		<dependency>
+			<groupId>cn.jpush.api</groupId>
+			<artifactId>jpush-client</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.jpush.api</groupId>
+			<artifactId>jiguang-common</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.6.Final</version>
+			<scope>compile</scope>
+		</dependency> -->
+		
 		
 		<!-- JFINAL -->
-		<!-- <dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>8.1.8</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.jfinal</groupId> <artifactId>jetty-server</artifactId> 
+			<version>8.1.8</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
-		<!-- <dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>jfinal</artifactId>
-			<version>3.5</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.jfinal</groupId> <artifactId>jfinal</artifactId> 
+			<version>3.5</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
-		<!-- <dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>9.4.12.v20180830</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-server</artifactId> 
+			<version>9.4.12.v20180830</version> </dependency> -->
 		<!-- mybatis生成 jar包 -->
-<!-- 		<dependency>
-   <groupId>ch.qos.logback</groupId>
-   <artifactId>logback-classic</artifactId>
-   <version>1.2.3</version>
-</dependency>
-<dependency>
-   <groupId>ch.qos.logback</groupId>
-   <artifactId>logback-core</artifactId>
-   <version>RELEASE</version>
-</dependency> -->
-<dependency>
-     <groupId>org.mybatis.generator</groupId>
-     <artifactId>mybatis-generator-core</artifactId>
-     <version>1.3.2</version>
-</dependency>
-  </dependencies>
-  <build>
-    <finalName>tally</finalName>
-    <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <!-- mybatis generator 自动生成代码插件 -->
+		<!-- <dependency> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
+			<version>1.2.3</version> </dependency> <dependency> <groupId>ch.qos.logback</groupId> 
+			<artifactId>logback-core</artifactId> <version>RELEASE</version> </dependency> -->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>tally</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<!-- mybatis generator 自动生成代码插件 -->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -402,6 +409,6 @@
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
-        </plugins>
-  </build>
+		</plugins>
+	</build>
 </project>
