@@ -13,7 +13,7 @@
 		<java.version>1.8</java.version>
 		<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
 		<!-- 这里的版本号我强制改了，如果有问题，再改回原来的4.0.3.RELEASE -->
-		<org.springframework.security.version>3.2.3.RELEASE</org.springframework.security.version>
+		<org.springframework.security.version>5.5.7</org.springframework.security.version>
 		<!-- Logging -->
 		<slf4j.version>1.6.6</slf4j.version>
 		<log4j.version>1.2.12</log4j.version>
