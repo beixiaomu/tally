@@ -332,7 +332,7 @@
 		<dependency>
 			<groupId>commons-net</groupId>
 			<artifactId>commons-net</artifactId>
-			<version>1.4.1</version>
+			<version>3.9.0</version>
 		</dependency>
 		<!-- 二维码 -->
 		<!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
